@@ -1,0 +1,18 @@
+student_id,student_name,gender,module_code,module_name,coursework1,coursework2,coursework3,total_marks,date_of_entry
+IOT005,Tom,male,2050,Internet of Things,78,90,85,253,2024-08-06
+BDA001,Louise,Female,3040,Big Data Architecture ,78,67,89,234,2024-07-06
+BDA002,Alex,Male,3040,Big Data Architecture,67,39,50,156,2024-09-09
+IOT001,Bob,Male,2050,Internet of Things,89,38,66,193,2024-04-09
+CLB2001,Jo,Male,9009,Cloud computing,90,87,78,255,2024-05-09
+BDA003,Immanuel,Male,3040,Big Data Architecture,78,67,80,225,2024-02-09
+BDA004,Yaashna,Female,3040,Big Data Architecture,78,94,78,250,2024-07-09
+BDA005,Askhee,Female,3040,Big Data Architecture,89,90,90,269,2024-08-08z
+IOT002,Divyesh,Male,2050,Internet Of Things,89,50,55,194,2024-03-02
+CLB2002,Anna,Female,9009,Cloud computing,78,67,45,190,2024-12-01
+CLB2003,John,Male,9009,Cloud computing,89,34,67,190,2024-03-02
+IOT003,Xavier,Male,2050,Internet Of Things,89,56,33,178,2024-03-09
+BDA006,Sakhiyya,Female,3040,Big Data Architecture,80,89,90,259,2024-02-02
+IOT004,Lavish,Male,2050,Internet Of Things,89,78,59,226,2024-05-09
+IOT098,Tim,Male,9009,Internet Of Things,98,67,55,220,2024-08-01
+CLB2090,Yohan,Male,9009,Cloud computing,70,40,99,209,2024-04-09
+CLB2007,li,Male,9009,Cloud computing,29,89,90,208,2024-03-04

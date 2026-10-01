@@ -1,0 +1,123 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6; /* Light background for readability */
+    color: #333; /* Dark text for better contrast */
+}
+
+/* Header Section */
+header {
+    background-color: #007bff; /* Bright blue for a strong first impression */
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 2.5rem;
+    border-bottom: 5px solid #0056b3; /* Add a darker border for separation */
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #0056b3; /* A deeper blue for navigation */
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+nav a {
+    color: #fff; /* White text for contrast */
+    text-decoration: none;
+    padding: 12px 20px;
+    margin: 0 10px;
+    font-size: 1.1rem;
+    border-radius: 5px; /* Rounded corners for a modern look */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+    background-color: #ff6f61; /* Attractive coral for hover effect */
+    color: #ffffff;
+    text-decoration: underline;
+    transform: scale(1.05); /* Slightly enlarge on hover for effect */
+}
+
+/* Main Content Section */
+.container {
+    padding: 20px;
+    background-color: #ffffff; /* White background for content */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    margin-top: 20px;
+}
+
+/* Footer Section */
+footer {
+    background-color: #333; /* Dark footer for contrast */
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 1rem;
+    border-top: 3px solid #007bff; /* Border to match header */
+}
+
+/* Button Styles */
+.btn {
+    background-color: #ff6f61; /* Coral buttons for visual emphasis */
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #e55d4a; /* Darker coral for hover */
+    transform: scale(1.05); /* Slight button enlargement on hover */
+}
+
+/* Link Styling */
+a {
+    color: #007bff; /* Blue color for links */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0056b3; /* Darker blue for link hover */
+    text-decoration: underline;
+}
+
+/* HR Styling */
+hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 2px solid #ddd; /* Subtle gray line */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        font-size: 2rem; /* Smaller font size for mobile */
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        margin: 10px 0;
+        font-size: 1rem; /* Adjust font size for smaller screens */
+    }
+
+    .container {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    footer {
+        font-size: 0.9rem;
+    }
+}

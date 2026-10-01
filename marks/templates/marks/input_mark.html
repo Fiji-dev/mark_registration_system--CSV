@@ -1,0 +1,59 @@
+{% extends 'marks/base.html' %}
+
+{% block title %}Input Marks - Mark Registration System{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <h3>Input Marks</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="module_code">Module Code:</label>
+                <input type="text" class="form-control" id="module_code" name="module_code" required>
+            </div>
+            <div class="form-group">
+                <label for="module_name">Module Name:</label>
+                <input type="text" class="form-control" id="module_name" name="module_name" required>
+            </div>
+            <div class="form-group">
+                <label for="coursework1">Coursework 1:</label>
+                <input type="number" class="form-control" id="coursework1" name="coursework1" required>
+            </div>
+            <div class="form-group">
+                <label for="coursework2">Coursework 2:</label>
+                <input type="number" class="form-control" id="coursework2" name="coursework2" required>
+            </div>
+            <div class="form-group">
+                <label for="coursework3">Coursework 3:</label>
+                <input type="number" class="form-control" id="coursework3" name="coursework3" required>
+            </div>
+            <div class="form-group">
+                <label for="student_id">Student ID:</label>
+                <input type="text" class="form-control" id="student_id" name="student_id" required>
+            </div>
+            <div class="form-group">
+                <label for="student_name">Student Name:</label>
+                <input type="text" class="form-control" id="student_name" name="student_name" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select class="form-control" id="gender" name="gender" required>
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date_of_entry">Date of Entry:</label>
+                <input type="date" class="form-control" id="date_of_entry" name="date_of_entry" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            <button type="reset" class="btn btn-secondary mt-3 ml-2">Reset</button>  <!-- Reset button -->
+        </form>
+        {% if status %}
+            <div class="mt-3 alert alert-{{ status }}">
+                <strong>{{ status|title }}!</strong> {{ message }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

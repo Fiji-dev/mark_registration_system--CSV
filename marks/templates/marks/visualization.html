@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4f96f2;
+        }
+
+        h3 {
+            color: #5a3d87;
+        }
+
+        .chart-container {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .chart-container canvas {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-section {
+            margin-bottom: 40px;
+        }
+
+        .charts-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .chart-column {
+            width: 48%;
+            min-width: 320px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Student Registration and Mark Visualizations</h1>
+
+    <div class="charts-row">
+        <!-- Average Marks Histogram -->
+        <div class="chart-column chart-section">
+            <h3>Average Marks Per Module</h3>
+            <div class="chart-container">
+                <canvas id="marksChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+
+        <!-- Gender Distribution Pie Chart -->
+        <div class="chart-column chart-section">
+            <h3>Gender Distribution</h3>
+            <div class="chart-container">
+                <canvas id="genderChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="charts-row">
+        <!-- Module Registration Bar Chart -->
+        <div class="chart-column chart-section">
+            <h3>Module Registration Count</h3>
+            <div class="chart-container">
+                <canvas id="moduleChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+
+        <!-- Registrations Over Time Line Chart -->
+        <div class="chart-column chart-section">
+            <h3>Registrations Over Time</h3>
+            <div class="chart-container">
+                <canvas id="registrationChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stacked Bar Chart -->
+    <div class="chart-section">
+        <h3>Student Registrations Over Time by Module</h3>
+        <div class="chart-container">
+            <canvas id="stackedBarChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Parse the data passed from Django view
+        var histogramData = JSON.parse('{{ histogram_data|escapejs }}');
+        var genderChartData = JSON.parse('{{ gender_chart_data|escapejs }}');
+        var moduleChartData = JSON.parse('{{ module_chart_data|escapejs }}');
+        var registrationData = JSON.parse('{{ registration_data|escapejs }}');
+
+        // Average Marks Histogram Chart
+        var ctx1 = document.getElementById('marksChart').getContext('2d');
+        var marksChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: histogramData.labels,
+                datasets: [{
+                    label: 'Coursework 1',
+                    data: histogramData.coursework1_values,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'Coursework 2',
+                    data: histogramData.coursework2_values,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'Coursework 3',
+                    data: histogramData.coursework3_values,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Gender Distribution Pie Chart
+        var ctx2 = document.getElementById('genderChart').getContext('2d');
+        var genderChart = new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: genderChartData.labels,
+                datasets: [{
+                    data: genderChartData.values,
+                    backgroundColor: ['#36A2EB', '#FF6384'],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeOutQuart',
+                }
+            }
+        });
+
+        // Module Registration Bar Chart
+        var ctx3 = document.getElementById('moduleChart').getContext('2d');
+        var moduleChart = new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: moduleChartData.labels,
+                datasets: [{
+                    label: 'Registrations per Module',
+                    data: moduleChartData.values,
+                    backgroundColor: '#36A2EB',
+                    borderColor: '#36A2EB',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                animation: {
+                    duration: 1500,
+                    easing: 'easeInOutQuad'
+                }
+            }
+        });
+
+        // Registrations Over Time Line Chart
+        var ctx4 = document.getElementById('registrationChart').getContext('2d');
+        var registrationChart = new Chart(ctx4, {
+            type: 'line',
+            data: {
+                labels: registrationData.labels,
+                datasets: [{
+                    label: 'Registrations Over Time',
+                    data: registrationData.values,
+                    backgroundColor: '#FFCD56',
+                    borderColor: '#FFCD56',
+                    fill: false,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutQuad',
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Stacked Bar Chart
+        var ctx5 = document.getElementById('stackedBarChart').getContext('2d');
+        var stackedBarChart = new Chart(ctx5, {
+            type: 'bar',
+            data: {
+                labels: registrationData.labels,  // Array of months
+                datasets: registrationData.module_data.map((moduleData, index) => ({
+                    label: 'Module ' + (index + 1),  // Customize labels for modules
+                    data: moduleData,
+                    backgroundColor: `rgba(${(index * 50) % 255}, ${(index * 100) % 255}, 180, 0.5)`,
+                    stack: 'stack1',
+                }))
+            },
+            options: {
+                scales: {
+                    x: { stacked: true },  // Enable stacking on X-axis
+                    y: { beginAtZero: true }  // Start Y-axis from zero
+                },
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Student Registration per Module Over Time' }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
